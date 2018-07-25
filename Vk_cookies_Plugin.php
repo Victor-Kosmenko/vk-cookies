@@ -96,11 +96,12 @@ class Vk_cookies_Plugin extends Vk_cookies_LifeCycle {
 
 
         // Adding scripts & styles to all pages
-        // Examples:
-        //        wp_enqueue_script('jquery');
-        //        wp_enqueue_style('my-style', plugins_url('/assets/css/my-style.css', __FILE__));
-        //        wp_enqueue_script('my-script', plugins_url('/assets/js/my-script.js', __FILE__));
+        wp_register_style('vk-cookies-style', plugin_dir_url(__FILE__) . 'assets/css/styles.css', array(), filemtime($this->getPluginDir() . '/assets/css/styles.css'), 'all');
+        wp_enqueue_style('vk-cookies-style');
 
+        wp_register_script('vk-cookies-script', plugin_dir_url(__FILE__) . 'assets/js/scripts.min.js', array('jquery'), filemtime($this->getPluginDir() . '/assets/js/scripts.min.js'));
+        wp_localize_script('vk-cookies-script', 'vk_cookies_global_data', array('ajaxurl' => admin_url('admin-ajax.php')));
+        wp_enqueue_script('vk-cookies-script');
 
         // Register short codes
         // http://plugin.michael-simpson.com/?page_id=39
