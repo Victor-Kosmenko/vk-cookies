@@ -13,8 +13,7 @@ class Vk_cookies_Plugin extends Vk_cookies_LifeCycle {
         //  http://plugin.michael-simpson.com/?page_id=31
         return array(
             //'_version' => array('Installed Version'), // Leave this one commented-out. Uncomment to test upgrades.
-            'CustomDataInput' => array(__('Enter in some text', 'vk_cookies')),
-            'CustomDataInput2' => array(__('Enter in some text', 'vk_cookies'))
+            'Link' => array(__('Link to the full version of terms and conditions', 'vk_cookies') => 'input')
         );
     }
 
