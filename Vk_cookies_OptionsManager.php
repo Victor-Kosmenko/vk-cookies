@@ -320,6 +320,29 @@ class Vk_cookies_OptionsManager {
 
         }
     }
+    
+    
+    /**
+     * Helper-function outputs the correct form element (input tag, select tag) for the given item
+     * @param  $OptionKey string name of the option (un-prefixed)
+     * @param  $OptionMetaType string type of the option (input, textarea, checkbox, etc.)
+     * @param  $savedOptionValue string current value for $aOptionKey
+     * @return void
+     */
+    protected function createCustomFormControl($OptionKey, $OptionMetaType, $savedOptionValue) {
+        switch($OptionMetaType){
+            case 'input':
+                ?>
+                    <p><input type="text" name="<?php echo $OptionKey ?>" id="<?php echo $OptionKey ?>" value="<?php echo esc_attr($savedOptionValue) ?>" size="50"/></p>
+                <?php
+                break;
+            default:
+                ?>
+                    <p><input type="text" name="<?php echo $OptionKey ?>" id="<?php echo $OptionKey ?>" value="<?php echo esc_attr($savedOptionValue) ?>" size="50"/></p>
+                <?php
+                break;
+        }
+    }
 
     /**
      * Override this method and follow its format.
