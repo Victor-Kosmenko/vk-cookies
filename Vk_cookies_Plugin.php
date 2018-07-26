@@ -13,8 +13,11 @@ class Vk_cookies_Plugin extends Vk_cookies_LifeCycle {
         //  http://plugin.michael-simpson.com/?page_id=31
         return array(
             //'_version' => array('Installed Version'), // Leave this one commented-out. Uncomment to test upgrades.
-            'Link' => array(__('Link to the full version of terms and conditions', 'vk_cookies') => 'input'),
             'Image' => array(__('Image (Icon)', 'vk_cookies') => 'image'),
+            'Link' => array(__('Link to the full version of terms and conditions', 'vk_cookies') => 'input'),
+            'BannerColor' => array(__('Banner color', 'vk_cookies') => 'color'),
+            'ButtonsColor' => array(__('Buttons color', 'vk_cookies') => 'color'),
+            
         );
     }
 
@@ -116,6 +119,8 @@ class Vk_cookies_Plugin extends Vk_cookies_LifeCycle {
     public function loadAdminScripts() {
         wp_enqueue_media();
         wp_enqueue_script( 'wp-media-uploader', plugin_dir_url(__FILE__) . 'assets/js/wp_media_uploader.js', array( 'jquery' ), 1.0 );
+        wp_enqueue_style( 'wp-color-picker');
+        wp_enqueue_script( 'wp-color-picker');
     }
 
 }

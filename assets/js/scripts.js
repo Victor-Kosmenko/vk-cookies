@@ -19,6 +19,10 @@ jQuery(function ($) {
             },
 
         });
+        
+        
+        // Color picker
+        $('.color-picker').wpColorPicker();
 
     });
 });

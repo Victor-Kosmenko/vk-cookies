@@ -341,6 +341,11 @@ class Vk_cookies_OptionsManager {
                     <p class="vk-cookies-img-uploader"><input type="text" name="<?php echo $OptionKey ?>" size="50" value="<?php echo esc_attr($savedOptionValue) ?>"></p>
                 <?php
                 break;
+            case 'color':
+                ?>
+                    <p><input type="text" class="color-picker" name="<?php echo $OptionKey ?>" id="<?php echo $OptionKey ?>" value="<?php echo esc_attr($savedOptionValue) ?>" size="50"/></p>
+                <?php
+                break;
             default:
                 ?>
                     <p><input type="text" name="<?php echo $OptionKey ?>" id="<?php echo $OptionKey ?>" value="<?php echo esc_attr($savedOptionValue) ?>" size="50"/></p>
