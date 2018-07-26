@@ -4,7 +4,7 @@ defined('ABSPATH') or die('No script kiddies please!');
 echo '<pre>'; var_dump($optionMetaData); echo '</pre>';
 ?>
 
-<div class="vk_cookies_admin_wrapper">
+<div class="vk_cookies_admin_wrapper wrap">
     <h2><?php _e('VK Cookies Settings', 'vk_cookies'); ?></h2>
 
     <form method="post" action="">
