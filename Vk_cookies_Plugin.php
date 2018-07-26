@@ -13,7 +13,8 @@ class Vk_cookies_Plugin extends Vk_cookies_LifeCycle {
         //  http://plugin.michael-simpson.com/?page_id=31
         return array(
             //'_version' => array('Installed Version'), // Leave this one commented-out. Uncomment to test upgrades.
-            'Link' => array(__('Link to the full version of terms and conditions', 'vk_cookies') => 'input')
+            'Link' => array(__('Link to the full version of terms and conditions', 'vk_cookies') => 'input'),
+            'Image' => array(__('Image (Icon)', 'vk_cookies') => 'image'),
         );
     }
 
@@ -92,6 +93,7 @@ class Vk_cookies_Plugin extends Vk_cookies_LifeCycle {
 
         // Add Actions & Filters
         // http://plugin.michael-simpson.com/?page_id=37
+        add_action('admin_enqueue_scripts', array(&$this, 'loadAdminScripts'));
 
 
         // Adding scripts & styles to all pages
@@ -111,5 +113,9 @@ class Vk_cookies_Plugin extends Vk_cookies_LifeCycle {
 
     }
 
+    public function loadAdminScripts() {
+        wp_enqueue_media();
+        wp_enqueue_script( 'wp-media-uploader', plugin_dir_url(__FILE__) . 'assets/js/wp_media_uploader.js', array( 'jquery' ), 1.0 );
+    }
 
 }
