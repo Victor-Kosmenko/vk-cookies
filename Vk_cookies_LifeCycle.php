@@ -69,7 +69,9 @@ class Vk_cookies_LifeCycle extends Vk_cookies_InstallIndicator {
      * @return void
      */
     public function deactivate() {
-        $this->deleteSavedOptions();
+        if($this->getOption('DataRemove') == 'yes'){
+            $this->deleteSavedOptions();
+        }
     }
 
     /**
