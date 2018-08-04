@@ -1,4 +1,4 @@
-.vk-cookies-wrapper { position: fixed; top: 0px; left: 0px; width: 100%; background: #fff; z-index: 2147483647; }
+.vk-cookies-wrapper { position: fixed; top: 0px; left: 0px; width: 100%; background: #fff; z-index: 2147483647; display: none; }
 .vk-cookies-wrapper .vk-cookies-content { width: 90%; padding: 10px 5%; }
 .vk-cookies-wrapper .vk-cookies-lnk-wrapper { text-align: center; }
 .vk-cookies-wrapper .vk-cookies-buttons-wrapper { text-align: center; padding-bottom: 10px; }
