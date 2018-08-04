@@ -360,7 +360,8 @@ class Vk_cookies_OptionsManager {
                 $default_content = html_entity_decode($this->getOption('MessagesData')['default']);
                 $default_content = stripslashes($default_content);
                 wp_editor($default_content, $OptionKey, $settings = array(
-                    'textarea_name' => 'MessagesData[default]'
+                    'textarea_name' => 'MessagesData[default]',
+                    'wpautop' => false
                 ) );
                 break;
             case 'textarea':

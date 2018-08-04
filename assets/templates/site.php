@@ -10,6 +10,7 @@ $cookies_message = $messages['default'];
 if(isset($messages[$user_country_code]) && !empty($messages[$user_country_code])){
     $cookies_message = $messages[$user_country_code];
 }
+$cookies_message = stripslashes(html_entity_decode($cookies_message));
 ?>
 
 <?php if($cookies_message || $link): ?>
