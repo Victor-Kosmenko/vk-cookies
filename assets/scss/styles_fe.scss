@@ -1,0 +1,26 @@
+.vk-cookies-wrapper{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background: #fff;
+    z-index: 2147483647;
+    
+    .vk-cookies-content{
+        width: 90%;
+        padding: 10px 5%;
+    }
+    .vk-cookies-lnk-wrapper{
+        text-align: center;
+    }
+    .vk-cookies-buttons-wrapper{
+        text-align: center;
+        padding-bottom: 10px;
+    }
+    .vk-cookies-icon{
+        display: inline;
+        max-width: 100px;
+        height: auto;
+        vertical-align: text-top;
+    }
+}

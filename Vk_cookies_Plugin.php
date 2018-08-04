@@ -113,6 +113,9 @@ class Vk_cookies_Plugin extends Vk_cookies_LifeCycle {
         // Adding scripts & styles to all pages except admin area
         add_action('wp_enqueue_scripts', array(&$this, 'loadSiteScripts'));
         
+        // Adding cookies panel
+        add_action('wp_footer', array(&$this, 'showCookiesMessage'));
+        
         
         // Register short codes
         // http://plugin.michael-simpson.com/?page_id=39
@@ -401,6 +404,14 @@ class Vk_cookies_Plugin extends Vk_cookies_LifeCycle {
             'ZM' => 'Zambia',
             'ZW' => 'Zimbabwe',
         );
+    }
+    
+    public function showCookiesMessage(){
+        ob_start();
+        include $this->getPluginDir() . "/assets/templates/site.php";
+        $contents = ob_get_contents();
+        ob_end_clean();
+        echo $contents;
     }
 
 }
