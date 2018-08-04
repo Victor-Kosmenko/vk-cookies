@@ -95,20 +95,24 @@ class Vk_cookies_Plugin extends Vk_cookies_LifeCycle {
         //            wp_enqueue_style('my-style', plugins_url('/assets/css/my-style.css', __FILE__));
         //        }
 
+        // Adding scripts & styles to settings page
+        if (strpos($_SERVER['REQUEST_URI'], $this->getSettingsSlug()) !== false) {
+            // Add Actions & Filters
+            // http://plugin.michael-simpson.com/?page_id=37
+            add_action('admin_enqueue_scripts', array(&$this, 'loadAdminScripts'));
 
-        // Add Actions & Filters
-        // http://plugin.michael-simpson.com/?page_id=37
-        add_action('admin_enqueue_scripts', array(&$this, 'loadAdminScripts'));
+            wp_register_style('vk-cookies-style', plugin_dir_url(__FILE__) . 'assets/css/styles.css', array(), filemtime($this->getPluginDir() . '/assets/css/styles.css'), 'all');
+            wp_enqueue_style('vk-cookies-style');
 
 
-        // Adding scripts & styles to all pages
-        wp_register_style('vk-cookies-style', plugin_dir_url(__FILE__) . 'assets/css/styles.css', array(), filemtime($this->getPluginDir() . '/assets/css/styles.css'), 'all');
-        wp_enqueue_style('vk-cookies-style');
-
+            wp_register_script('vk-cookies-script', plugin_dir_url(__FILE__) . 'assets/js/scripts.min.js', array('jquery'), filemtime($this->getPluginDir() . '/assets/js/scripts.min.js'), true);
+            wp_enqueue_script('vk-cookies-script');
+            wp_localize_script('vk-cookies-script', 'vk_cookies_global_data', array('ajaxurl' => admin_url('admin-ajax.php')));
+        }
         
-        wp_register_script('vk-cookies-script', plugin_dir_url(__FILE__) . 'assets/js/scripts.min.js', array('jquery'), filemtime($this->getPluginDir() . '/assets/js/scripts.min.js'), true);
-        wp_enqueue_script('vk-cookies-script');
-        wp_localize_script('vk-cookies-script', 'vk_cookies_global_data', array('ajaxurl' => admin_url('admin-ajax.php')));
+        // Adding scripts & styles to all pages except admin area
+        add_action('wp_enqueue_scripts', array(&$this, 'loadSiteScripts'));
+        
         
         // Register short codes
         // http://plugin.michael-simpson.com/?page_id=39
@@ -124,6 +128,14 @@ class Vk_cookies_Plugin extends Vk_cookies_LifeCycle {
         wp_enqueue_script( 'wp-media-uploader', plugin_dir_url(__FILE__) . 'assets/js/wp_media_uploader.js', array( 'jquery' ), 1.0 );
         wp_enqueue_style( 'wp-color-picker');
         wp_enqueue_script( 'wp-color-picker');
+    }
+    
+    public function loadSiteScripts() {
+        wp_register_style('vk-cookies-style-fe', plugin_dir_url(__FILE__) . 'assets/css/styles_fe.css', array(), filemtime($this->getPluginDir() . '/assets/css/styles_fe.css'), 'all');
+        wp_enqueue_style('vk-cookies-style-fe');
+        
+        wp_register_script('vk-cookies-script-fe', plugin_dir_url(__FILE__) . 'assets/js/scripts_fe.min.js', array('jquery'), filemtime($this->getPluginDir() . '/assets/js/scripts_fe.min.js'), true);
+        wp_enqueue_script('vk-cookies-script-fe');
     }
     
     public function getJSONMessagesData() {
