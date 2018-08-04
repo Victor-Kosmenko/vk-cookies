@@ -368,6 +368,16 @@ class Vk_cookies_OptionsManager {
                     <textarea name="<?php echo $OptionKey ?>" id="<?php echo $OptionKey ?>" value="<?php echo esc_attr($savedOptionValue) ?>"></textarea>
                 <?php
                 break;
+            case 'data_remove_select':
+                ?>
+                    <p>
+                        <select name="<?php echo $OptionKey ?>" id="<?php echo $OptionKey ?>" >
+                            <option value="yes" <?php if(esc_attr($savedOptionValue) == 'yes') echo 'selected'; ?> >Yes</option>
+                            <option value="no" <?php if(esc_attr($savedOptionValue) == 'no') echo 'selected'; ?>>No</option>
+                        </select>
+                    </p>
+                <?php
+                break;
             default:
                 ?>
                     <p><input type="text" name="<?php echo $OptionKey ?>" id="<?php echo $OptionKey ?>" value="<?php echo esc_attr($savedOptionValue) ?>" size="50"></p>

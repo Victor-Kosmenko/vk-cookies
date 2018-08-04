@@ -19,6 +19,7 @@ class Vk_cookies_Plugin extends Vk_cookies_LifeCycle {
             'ButtonsColor' => array(__('Buttons color', 'vk_cookies') => 'color'),
             'MessagesData' => array(),
             'Message' => array(__('Message', 'vk_cookies') => 'wysiwyg_custom_messages'),
+            'DataRemove' => array(__('Delete data on deactivation', 'vk_cookies') => 'data_remove_select'),
         );
     }
 
