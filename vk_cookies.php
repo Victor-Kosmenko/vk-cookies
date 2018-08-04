@@ -1,7 +1,7 @@
 <?php
 /*
-   Plugin Name: vk_cookies
-   Plugin URI: http://wordpress.org/extend/plugins/vk_cookies/
+   Plugin Name: VK Cookies
+   Plugin URI: http://testing.kotabooo.com/cookies/
    Version: 0.1
    Author: Victor Kosmenko
    Description: Custom cookies plugin
