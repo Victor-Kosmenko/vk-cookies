@@ -274,7 +274,12 @@ class Vk_cookies_OptionsManager {
         if ($optionMetaData != null) {
             foreach ($optionMetaData as $aOptionKey => $aOptionMeta) {
                 if (isset($_POST[$aOptionKey])) {
-                    $this->updateOption($aOptionKey, $_POST[$aOptionKey]);
+                    if($aOptionKey == 'MessagesData' && is_array($this->getOption('MessagesData'))){
+                        $this->updateOption($aOptionKey, array_merge($this->getOption('MessagesData'), $_POST[$aOptionKey]));
+                    }
+                    else{
+                        $this->updateOption($aOptionKey, $_POST[$aOptionKey]);
+                    }
                 }
             }
         }
@@ -326,14 +331,14 @@ class Vk_cookies_OptionsManager {
      * Helper-function outputs the correct form element (input tag, select tag) for the given item
      * @param  $OptionKey string name of the option (un-prefixed)
      * @param  $OptionMetaType string type of the option (input, textarea, checkbox, etc.)
-     * @param  $savedOptionValue string current value for $aOptionKey
+     * @param  $savedOptionValue string current value for $OptionKey
      * @return void
      */
     protected function createCustomFormControl($OptionKey, $OptionMetaType, $savedOptionValue) {
         switch($OptionMetaType){
             case 'input':
                 ?>
-                    <p><input type="text" name="<?php echo $OptionKey ?>" id="<?php echo $OptionKey ?>" value="<?php echo esc_attr($savedOptionValue) ?>" size="50"/></p>
+                    <p><input type="text" name="<?php echo $OptionKey ?>" id="<?php echo $OptionKey ?>" value="<?php echo esc_attr($savedOptionValue) ?>" size="50"></p>
                 <?php
                 break;
             case 'image':
@@ -343,12 +348,29 @@ class Vk_cookies_OptionsManager {
                 break;
             case 'color':
                 ?>
-                    <p><input type="text" class="color-picker" name="<?php echo $OptionKey ?>" id="<?php echo $OptionKey ?>" value="<?php echo esc_attr($savedOptionValue) ?>" size="50"/></p>
+                    <p><input type="text" class="color-picker" name="<?php echo $OptionKey ?>" id="<?php echo $OptionKey ?>" value="<?php echo esc_attr($savedOptionValue) ?>" size="50"></p>
+                <?php
+                break;
+            case 'wysiwyg':
+                wp_editor($savedOptionValue, $OptionKey, $settings = array(
+                    'textarea_name' => $OptionKey
+                ) );
+                break;
+            case 'wysiwyg_custom_messages':
+                $default_content = html_entity_decode($this->getOption('MessagesData')['default']);
+                $default_content = stripslashes($default_content);
+                wp_editor($default_content, $OptionKey, $settings = array(
+                    'textarea_name' => 'MessagesData[default]'
+                ) );
+                break;
+            case 'textarea':
+                ?>
+                    <textarea name="<?php echo $OptionKey ?>" id="<?php echo $OptionKey ?>" value="<?php echo esc_attr($savedOptionValue) ?>"></textarea>
                 <?php
                 break;
             default:
                 ?>
-                    <p><input type="text" name="<?php echo $OptionKey ?>" id="<?php echo $OptionKey ?>" value="<?php echo esc_attr($savedOptionValue) ?>" size="50"/></p>
+                    <p><input type="text" name="<?php echo $OptionKey ?>" id="<?php echo $OptionKey ?>" value="<?php echo esc_attr($savedOptionValue) ?>" size="50"></p>
                 <?php
                 break;
         }

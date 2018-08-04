@@ -24,5 +24,23 @@ jQuery(function ($) {
         // Color picker
         $('.color-picker').wpColorPicker();
 
+
+        // Country select functionality (messages update)
+        $('#vk_cookies_country_select').change(function(){
+            
+            var MessageEditor =  tinyMCE.get('Message');
+            
+            if(vk_cookies_messages_data[$(this).val()]){
+                $('#Message').attr('name', 'MessagesData['+ $(this).val() +']').html(vk_cookies_messages_data[$(this).val()]);
+                MessageEditor.setContent(vk_cookies_messages_data[$(this).val()]);
+            }
+            else{
+                $('#Message').attr('name', 'MessagesData['+ $(this).val() +']').html('');
+                MessageEditor.setContent('');
+            }
+            
+        });
+
+
     });
 });
